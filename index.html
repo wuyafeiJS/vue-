@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>广发证券</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+
+  <section id="app">
+    <div class="loading" v-if="loading">
+      <div class="wrapper">
+        <div class="loader-inner line-spin-fade-loader">
+          <div class="pos01"></div>
+          <div></div>
+          <div></div>
+          <div class="pos02"></div>
+          <div></div>
+          <div></div>
+          <div class="pos03"></div>
+          <div></div>
+          <div></div>
+          <div class="pos04"></div>
+          <div></div>
+          <div></div>
+          <div class="pos05"></div>
+          <div></div>
+          <div></div>
+          <div class="pos06"></div>
+          <div></div>
+          <div></div>
+          <div class="pos07"></div>
+          <div></div>
+          <div></div>
+          <div class="pos08"></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="title">{{title}}</div>
+    <div class="time">
+      {{time}}
+    </div>
+    <div class="title2">{{title2}}</div>
+    <div class="db">
+      <div class="db-title">生产交易后台</div>
+      <div class="circle01 circle" v-show="circles[0]"></div>
+      <div class="circle02 circle" v-show="circles[1]"></div>
+      <div class="circle03 circle" v-show="circles[2]"></div>
+      <div class="circle04 circle" v-show="circles[3]"></div>
+      <!-- <div class="circle"></div> -->
+      <div class="bg"></div>
+    </div>
+    <div class="footer">
+      <div class="box1">
+        <p>
+          <span class="label">外围总请求笔数</span>
+          <span class="val">300001</span>
+        </p>
+        <p>
+          <span class="label">外围总成功笔数</span>
+          <span class="val">888</span>
+        </p>
+        <p>
+          <span class="label">外围总失败笔数</span>
+          <span class="val">3</span>
+        </p>
+      </div>
+      <div class="box2">
+        <p>
+          <span class="label">OT总请求笔数</span>
+          <span class="val">300001</span>
+        </p>
+        <p>
+          <span class="label">OT总成功笔数</span>
+          <span class="val">888</span>
+        </p>
+        <p>
+          <span class="label">OT总失败笔数</span>
+          <span class="val">3</span>
+        </p>
+      </div>
+      <div class="box3">
+        <p>
+          <span class="label">中间件总请求笔数</span>
+          <span class="val">300001</span>
+        </p>
+        <p>
+          <span class="label">中间件总成功笔数</span>
+          <span class="val">888</span>
+        </p>
+        <p>
+          <span class="label">中间件总失败笔数</span>
+          <span class="val">3</span>
+        </p>
+      </div>
+      <div class="box4">
+        <p>
+          <span class="label">中间件总请求笔数</span>
+          <span class="val">300001</span>
+        </p>
+        <p>
+          <span class="label">DB平均失误延迟</span>
+          <span class="val">888</span>
+        </p>
+      </div>
+      <div class="box5">
+        <p>
+          <span class="label">总委托笔数</span>
+          <span class="val">300001</span>
+        </p>
+        <p>
+          <span class="label">总成交笔数</span>
+          <span class="val">888</span>
+        </p>
+        <p>
+          <span class="label">中间件总失败笔数</span>
+          <span class="val">38%</span>
+        </p>
+      </div>
+    </div>
+    <div class="trade-center">
+      <div class="product">
+        <div class="center-title">生产交易中心</div>
+        <div class="details">
+          <div class="adress">科学城介入AR</div>
+          <div class="branch-01">
+            <lamp-integer v-bind:status="lampStatus.status_kxc_01" style="margin-top:103px"></lamp-integer>
+            <div :class="'line-x ' + lampStatus.status_kxc_01"></div>
+            <div class="line-y1 y error"></div>
+            <div class="line-y2 y error"></div>
+            <div class="server-name" style="top:58px;left:56px">
+              <div class="speed-cell error">200/S</div>
+              科学城Open Trading
+            </div>
+            <div class="server-name" style="top:156px;left:90px">
+              <div class="speed-cell error">800/S</div>
+              科学城交易总线
+            </div>
+          </div>
+          <div class="branch-02">
+            <div class="up border">
+              <lamp-integer v-bind:status="lampStatus.status_kxc_02" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_kxc_02"></div>
+              <div class="line-y1 y normal"></div>
+              <div class="line-y2 y normal"></div>
+              <div class="line-y3 y normal"></div>
+              <div class="server-name" style="top:21px;left:65px">
+                <div class="speed-cell normal">200/S</div>
+                科学城通达信交易主站集群
+              </div>
+              <div class="server-name" style="top:60px;left:65px">
+                <div class="speed-cell normal">800/S</div>
+                科学城手机交易主站集群
+              </div>
+              <div class="server-name" style="top:99px;left:65px">
+                <div class="speed-cell normal">800/S</div>
+                科学城同花顺交易主站集群
+              </div>
+            </div>
+            <div class="down border">
+              <lamp-integer v-bind:status="lampStatus.status_kxc_03" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_kxc_03"></div>
+              <div class="server-name" style="top:36px;left:65px">
+                <div class="speed-cell normal">200/S</div>
+                科学城WEB交易主站集群
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diffcity">
+        <div class="center-title">异地交易中心</div>
+        <div class="details">
+          <div class="adress">上海接入AR</div>
+          <div class="branch-01">
+            <lamp-integer v-bind:status="lampStatus.status_sh_01" style="margin-top:103px"></lamp-integer>
+            <div :class="'line-x ' + lampStatus.status_sh_01"></div>
+            <div class="line-y1 y normal"></div>
+            <div class="line-y2 y normal"></div>
+            <div class="server-name" style="top:58px;left:56px">
+              <div class="speed-cell normal">200/S</div>
+              上海Open Trading
+            </div>
+            <div class="server-name" style="top:156px;left:90px">
+              <div class="speed-cell normal">800/S</div>
+              上海交易总线
+            </div>
+          </div>
+          <div class="branch-02">
+            <div class="up border">
+              <lamp-integer v-bind:status="lampStatus.status_sh_02" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_sh_02"></div>
+              <div class="line-y1 y warning"></div>
+              <div class="line-y2 y warning"></div>
+              <div class="line-y3 y warning"></div>
+              <div class="server-name" style="top:21px;left:65px">
+                <div class="speed-cell warning">200/S</div>
+                上海通达信交易主站集群
+              </div>
+              <div class="server-name" style="top:60px;left:65px">
+                <div class="speed-cell warning">800/S</div>
+                上海手机交易主站集群
+              </div>
+              <div class="server-name" style="top:99px;left:65px">
+                <div class="speed-cell warning">800/S</div>
+                上海同花顺交易主站集群
+              </div>
+            </div>
+            <div class="down border">
+              <lamp-integer v-bind:status="lampStatus.status_sh_03" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_sh_03"></div>
+              <div class="server-name" style="top:36px;left:65px">
+                <div class="speed-cell normal">200/S</div>
+                上海WEB交易主站集群
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seemcity">
+        <div class="center-title">同城交易中心</div>
+        <div class="details">
+          <div class="adress">马场接入AR</div>
+          <div class="branch-01">
+            <lamp-integer v-bind:status="lampStatus.status_mc_01" style="margin-top:103px"></lamp-integer>
+            <div :class="'line-x ' + lampStatus.status_mc_01"></div>
+            <div class="line-y1 y error"></div>
+            <div class="line-y2 y ban"></div>
+            <div class="server-name" style="top:58px;left:56px">
+              <div class="speed-cell error">200/S</div>
+              马场Open Trading
+            </div>
+            <div class="server-name" style="top:156px;left:90px">
+              <div class="speed-cell ban">800/S</div>
+              马场交易总线
+            </div>
+          </div>
+          <div class="branch-02">
+            <div class="up border">
+              <lamp-integer v-bind:status="lampStatus.status_mc_02" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_mc_02"></div>
+              <div class="line-y1 y normal"></div>
+              <div class="line-y2 y normal"></div>
+              <div class="line-y3 y normal"></div>
+              <div class="server-name" style="top:21px;left:65px">
+                <div class="speed-cell normal">200/S</div>
+                马场通达信交易主站集群
+              </div>
+              <div class="server-name" style="top:60px;left:65px">
+                <div class="speed-cell normal">800/S</div>
+                马场手机交易主站集群
+              </div>
+              <div class="server-name" style="top:99px;left:65px">
+                <div class="speed-cell normal">800/S</div>
+                马场同花顺交易主站集群
+              </div>
+            </div>
+            <div class="down border">
+              <lamp-integer v-bind:status="lampStatus.status_mc_03" style="margin-top:32px"></lamp-integer>
+              <div :class="'line-x ' + lampStatus.status_mc_03"></div>
+              <div class="server-name" style="top:36px;left:65px">
+                <div class="speed-cell normal">200/S</div>
+                马场WEB交易主站集群
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="temp-backend backend">
+      <div class="title">温备交易后台</div>
+
+      <div class="loader">
+
+        <div class="ping">
+          <div class="sub-circle"></div>
+          <div>
+            <p>
+              <span>25</span>s</p>
+            <p>延迟</p>
+          </div>
+        </div>
+        <div class="loader-inner line-spin-fade-loader">
+          <div class="pos01"></div>
+          <div></div>
+          <div></div>
+          <div class="pos02"></div>
+          <div></div>
+          <div></div>
+          <div class="pos03"></div>
+          <div></div>
+          <div></div>
+          <div class="pos04"></div>
+          <div></div>
+          <div></div>
+          <div class="pos05"></div>
+          <div></div>
+          <div></div>
+          <div class="pos06"></div>
+          <div></div>
+          <div></div>
+          <div class="pos07"></div>
+          <div></div>
+          <div></div>
+          <div class="pos08"></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="seem-backend backend">
+      <div class="title">同城交易后台</div>
+
+      <div class="loader">
+        <div class="ping">
+          <div class="sub-circle"></div>
+          <div>
+            <p>
+              <span>6</span>s</p>
+            <p>延迟</p>
+          </div>
+        </div>
+        <div class="loader-inner line-spin-fade-loader">
+          <div class="pos01"></div>
+          <div></div>
+          <div></div>
+          <div class="pos02"></div>
+          <div></div>
+          <div></div>
+          <div class="pos03"></div>
+          <div></div>
+          <div></div>
+          <div class="pos04"></div>
+          <div></div>
+          <div></div>
+          <div class="pos05"></div>
+          <div></div>
+          <div></div>
+          <div class="pos06"></div>
+          <div></div>
+          <div></div>
+          <div class="pos07"></div>
+          <div></div>
+          <div></div>
+          <div class="pos08"></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="diff-backend backend">
+      <div class="title">异地交易后台</div>
+
+      <div class="loader">
+        <div class="ping">
+          <div class="sub-circle"></div>
+          <div>
+            <p>
+              <span>10</span>s</p>
+            <p>延迟</p>
+          </div>
+        </div>
+        <div class="loader-inner line-spin-fade-loader">
+          <div class="pos01"></div>
+          <div></div>
+          <div></div>
+          <div class="pos02"></div>
+          <div></div>
+          <div></div>
+          <div class="pos03"></div>
+          <div></div>
+          <div></div>
+          <div class="pos04"></div>
+          <div></div>
+          <div></div>
+          <div class="pos05"></div>
+          <div></div>
+          <div></div>
+          <div class="pos06"></div>
+          <div></div>
+          <div></div>
+          <div class="pos07"></div>
+          <div></div>
+          <div></div>
+          <div class="pos08"></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bar bar_5">
+      <div class="item_05"></div>
+      <div class="item_04"></div>
+      <div class="item_03"></div>
+      <div class="item_02"></div>
+      <div class="item_01"></div>
+    </div>
+    <div class="bar bar_11">
+      <div class="item_11"></div>
+      <div class="item_10"></div>
+      <div class="item_09"></div>
+      <div class="item_08"></div>
+      <div class="item_07"></div>
+      <div class="item_06"></div>
+      <div class="item_05"></div>
+      <div class="item_04"></div>
+      <div class="item_03"></div>
+      <div class="item_02"></div>
+      <div class="item_01"></div>
+    </div>
+    <div class="bar bar_3">
+      <div class="item_03"></div>
+      <div class="item_02"></div>
+      <div class="item_01"></div>
+    </div>
+    <div class="green-lamp green-lamp_01">
+      <lamp-integer v-bind:status="'green'"></lamp-integer>
+      <div class="data">
+        <span>2100</span>s</div>
+      <div class="line">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="green-lamp green-lamp_02">
+      <lamp-integer v-bind:status="'green'"></lamp-integer>
+      <div class="data">
+        <span>700</span>s</div>
+      <div class="line">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="green-lamp green-lamp_03">
+      <lamp-integer v-bind:status="'green'"></lamp-integer>
+      <div class="data">
+        <span>500</span>s</div>
+      <div class="line">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="js/vue.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
